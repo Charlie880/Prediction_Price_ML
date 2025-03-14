@@ -1,0 +1,90 @@
+Car Price Prediction Analysis Report
+
+---
+
+Objective
+The objective of this project was to predict car prices using supervised machine learning techniques and evaluate model performance. The models were assessed on regression and classification tasks with hyperparameter tuning and cross-validation to optimize their performance.
+
+---
+
+Key Findings
+
+1. Regression Task
+- **Models Used:** Linear Regression, Decision Tree Regressor, Random Forest Regressor
+
+**Performance Metrics for Linear Regression:**
+- Mean Squared Error (MSE): 209,941,047,424.15
+- R² Score: 0.68
+- Mean Absolute Error (MAE): 274,668.23
+
+**Best Hyperparameters for Decision Tree Regressor:**
+- max_depth: None
+- min_samples_leaf: 1
+- min_samples_split: 2
+
+**Best Hyperparameters for Random Forest Regressor:**
+- n_estimators: 200
+- max_depth: None
+- min_samples_split: 2
+- min_samples_leaf: 1
+
+**Cross-Validation (Random Forest Regressor):**
+- Mean MSE: ~[insert cross-validation mean score]
+
+---
+
+2. Classification Task
+- **Classification Approach:** Car prices were divided into two categories based on the median price (high price vs. low price).
+
+**Performance Metrics:**
+- **Models Evaluated:**
+
+**Decision Tree Classifier:**
+- Best Hyperparameters:
+  - max_depth: 10
+  - min_samples_leaf: 1
+  - min_samples_split: 2
+- Accuracy: High accuracy but lower precision for minority class due to overfitting on smaller datasets.
+
+**Random Forest Classifier:**
+- Best Hyperparameters:
+  - n_estimators: 200
+  - max_depth: 20
+  - min_samples_leaf: 1
+  - min_samples_split: 2
+- Cross-Validation Mean Accuracy: ~[insert high accuracy mean score]
+  
+---
+
+Insights from Feature Importance
+Feature importance was analyzed for tree-based models (Decision Tree and Random Forest):
+
+**Most Influential Features:**
+- **Mileage:** Strong positive correlation with price.
+- **Max Power:** High contribution to both regression and classification tasks.
+- **Age:** Negative correlation, indicating depreciation over time.
+- **Transmission Type:** Manual cars are generally priced lower.
+- **Seller Type (Individual):** Individual sellers tend to have lower-priced cars.
+
+Feature importance bar plots confirmed that engine size and ownership type also had moderate influence on price predictions.
+
+---
+
+Model Comparison
+**Regression:** 
+Random Forest Regressor outperformed both Linear Regression and Decision Tree Regressor, providing better generalization and handling non-linearity in the data.
+
+**Classification:** 
+Random Forest Classifier delivered the most balanced and reliable results, with higher accuracy and reduced overfitting compared to Decision Tree Classifier.
+
+---
+
+Justification for the Most Suitable Model
+The Random Forest Regressor is the most suitable model for predicting car prices in this dataset due to:
+1. Its ability to capture complex, non-linear relationships in the data.
+2. Superior performance metrics (lower MSE, higher R² compared to other models).
+3. Robustness to overfitting due to ensemble learning.
+
+For the classification task, the Random Forest Classifier is recommended for its balanced accuracy, precision, and recall, making it suitable for identifying high and low price categories.
+
+---

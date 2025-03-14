@@ -1,0 +1,64 @@
+Linear Regression Analysis: Car Price Prediction
+
+Objective
+The primary aim of this analysis was to predict car selling prices using a linear regression model, leveraging various features such as mileage, engine capacity, max power, and categorical attributes like seller type, owner type, and transmission type.
+
+---
+
+Dataset Preparation
+
+Feature Selection
+The following features were selected for the model:
+- Mileage (km/ltr/kg)
+- Engine Capacity
+- Max Power
+- Age (calculated from the manufacturing year)
+- Seller Type (Individual)
+- Owner Type (Second Owner)
+- Transmission Type (Manual)
+
+Feature Engineering
+- An age column was created by subtracting the car's manufacturing year from the current year.
+- Categorical features (seller_type, owner, and transmission) were transformed into binary values using one-hot encoding to facilitate model training.
+
+Data Splitting
+The dataset was divided into training (80%) and testing (20%) sets to evaluate model performance effectively.
+
+---
+
+Model Performance Metrics
+- Mean Squared Error (MSE): 209,941,047,424.15
+- R² Score: 0.68
+
+These metrics indicate that while the model captures a reasonable amount of variance in car prices, there is still room for improvement.
+
+---
+
+Insights from Feature Importance
+The coefficients derived from the linear regression model offer insights into how each feature influences car selling prices:
+
+| Feature                  | Coefficient        | Impact                              |
+|--------------------------|--------------------|-------------------------------------|
+| mileage(km/ltr/kg)      | 15,111.28          | Positive contributor to selling price. |
+| max_power               | 13,411.96          | Positive contributor to selling price. |
+| engine                   | 16.59              | Minimal impact on price.            |
+| age                      | -35,835.68         | Older cars tend to have lower selling prices. |
+| owner_Second Owner      | -54,554.79         | Cars with multiple owners are valued lower. |
+| seller_type_Individual   | -208,823.58        | Cars sold by individuals are priced lower. |
+| transmission_Manual      | -479,808.35        | Cars with manual transmission have significantly lower prices. |
+
+Visualizations
+1. Feature Importance Visualization
+   - A bar plot illustrated that transmission_Manual had the most substantial negative impact on car prices, followed by seller_type_Individual and owner_Second Owner. In contrast, both mileage(km/ltr/kg) and max_power emerged as key positive contributors.
+
+2. Actual vs. Predicted Selling Prices
+   - A scatterplot comparing predicted and actual selling prices demonstrated a generally good alignment for most data points; however, it revealed increasing variance at higher price ranges. This suggests that while the model captures general trends effectively, it struggles with outliers or extreme values.
+
+---
+
+Conclusion
+The linear regression model performed reasonably well with an R² score of 0.68, indicating that it explains a significant portion of the variance in car prices but has limitations in addressing higher-priced cars and outliers.
+
+Key predictors of car price include:
+- Positive Influencers: Mileage and max power.
+- Negative Influencers: Age of the car, seller type (individual), owner type (second owner), and transmission type (manual).

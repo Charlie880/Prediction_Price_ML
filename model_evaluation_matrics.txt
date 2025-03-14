@@ -1,0 +1,118 @@
+Findings Report: Machine Learning Analysis on Cleaned Dataset
+
+---
+
+Objective:
+The goal of this analysis is to evaluate and compare various machine learning models (Linear Regression, Logistic Regression, Decision Tree, and Random Forest) for both classification and regression tasks using the cleaned dataset (cleaned_cardekho.csv).
+
+---
+
+1. Binary Classification (Price Category Prediction)
+
+Methodology:
+- Target Variable: price_category (High Price or Low Price based on median price)
+- Features Used:
+  - mileage(km/ltr/kg)
+  - engine
+  - max_power
+  - age
+  - seller_type_Individual
+  - owner_Second Owner
+  - transmission_Manual
+- Train-Test Split: 80% training, 20% testing
+
+Models Used and Evaluation:
+
+**Logistic Regression:**
+- Accuracy: 86%
+- Precision, Recall, F1-Score:
+  
+| Class | Precision | Recall | F1-Score |
+|-------|-----------|--------|----------|
+| Low   | 0.88      | 0.84   | 0.86     |
+| High  | 0.85      | 0.88   | 0.87     |
+
+- Significant Features: age, max_power
+
+**Decision Tree Classifier:**
+- Accuracy: 87%
+- Feature Importance:
+
+| Feature | Importance |
+|---------|------------|
+| age     | 0.560659   |
+| max_power | 0.391254 |
+
+**Random Forest Classifier:**
+- Accuracy: 91.14%
+- Precision, Recall, F1-Score:
+
+| Class | Precision | Recall | F1-Score |
+|-------|-----------|--------|----------|
+| Low   | 0.89      | 0.93   | 0.91     |
+| High  | 0.90      | 0.87   | 0.88     |
+
+- Significant Features: age, max_power
+
+---
+
+2. Regression Task (Selling Price Prediction)
+
+Methodology:
+- Target Variable: selling_price
+- Features Used:
+  - mileage(km/ltr/kg)
+  - engine
+  - max_power
+  - age
+  - seller_type_Individual
+  - owner_Second Owner
+  - transmission_Manual
+- Train-Test Split: 80% training, 20% testing
+
+Models Used and Evaluation:
+
+**Linear Regression:**
+- Mean Squared Error (MSE): 21,053,499,082.15
+- R² Score: 0.79
+- Mean Absolute Error (MAE): 110,852.78
+
+**Coefficients:**
+
+| Feature    | Coefficient   |
+|------------|---------------|
+| max_power  | 102,145.34    |
+| engine     | 65,972.11     |
+| age        | -44,521.67    |
+
+**Decision Tree Regressor:**
+- MSE: 84,055,709,468.59
+- R² Score: 0.87
+- Significant Features: max_power, age
+
+**Random Forest Regressor:**
+- MSE: 20,051,987,199.62
+- R² Score: 0.97
+- MAE: 71,681.73
+
+**Feature Importance:**
+
+| Feature    | Importance   |
+|------------|--------------|
+| max_power  | 0.735044     |
+| age        | 0.202361     |
+
+---
+
+3. Comparison and Key Insights
+
+**Classification:**
+- Best Performing Model: Random Forest Classifier (Accuracy: 91.14%)
+- Key Features: age and max_power consistently influence predictions.
+
+**Regression:**
+- Best Performing Model: Random Forest Regressor (R² Score: 0.97, MSE: 20,051,987,199.62)
+- Key Features: max_power remains the dominant predictor across all models.
+  
+**Linear Regression:** 
+While providing an interpretable baseline, it showed lower performance (R² Score: 0.79) compared to ensemble methods like Random Forest.

@@ -1,0 +1,135 @@
+Findings Report: Random Forest Analysis on Cleaned Dataset
+
+---
+
+Objective:
+The goal of this analysis is to perform both classification and regression tasks on the given cleaned dataset (cleaned_cardekho.csv) using Random Forest models and report the findings.
+
+---
+
+1. Binary Classification (Price Category Prediction)
+
+Methodology:
+- The target variable price_category was created by classifying cars as "High Price" or "Low Price" based on the median selling price.
+- Features used for classification:
+  - mileage(km/ltr/kg)
+  - engine
+  - max_power
+  - age
+  - seller_type_Individual
+  - owner_Second Owner
+  - transmission_Manual
+- Data was split into 80% training and 20% testing sets.
+- A Random Forest Classifier was trained with parameters:
+  - n_estimators=100
+  - max_depth=10
+  - min_samples_split=10
+  - min_samples_leaf=5
+
+Evaluation Metrics:
+- Accuracy: 87%
+- Precision, Recall, and F1-Score for both classes:
+
+| Class          | Precision | Recall | F1-Score | Support |
+|----------------|-----------|--------|----------|---------|
+| Low Price (0)  | 0.88      | 0.87   | 0.87     | 819     |
+| High Price (1) | 0.87      | 0.88   | 0.87     | 807     |
+
+Overall Metrics:
+- Macro Average:
+  - Precision: 0.87, Recall: 0.87, F1-Score: 0.87
+- Weighted Average:
+  - Precision: 0.87, Recall: 0.87, F1-Score: 0.87
+
+Confusion Matrix:
+A heatmap visualization of the confusion matrix was generated and saved as confusion_matrix_rf_classifier.png.
+
+| Actual/Predicted   | Low Price (0) | High Price (1) |
+|---------------------|----------------|-----------------|
+| Low Price (0)       | 714            | 105             |
+| High Price (1)      | 94             | 713             |
+
+Feature Importance (Classifier):
+The most important features in predicting the price category were:
+
+| Feature                 | Importance |
+|-------------------------|------------|
+| age                     | 0.560659   |
+| max_power               | 0.391254   |
+| engine                  | 0.048087   |
+| mileage(km/ltr/kg)     | 0.000000   |
+| seller_type_Individual   | 0.000000   |
+| owner_Second Owner      | 0.000000   |
+| transmission_Manual     | 0.000000   |
+
+A bar plot visualizing feature importance was saved as feature_importance_rf_classifier.png.
+
+---
+
+2. Regression Task (Selling Price Prediction)
+
+Methodology:
+- The target variable was the selling_price.
+- The same features used in the classification task were utilized for regression.
+- Data was split into 80% training and 20% testing sets.
+- A Random Forest Regressor was trained with parameters:
+  - n_estimators=100
+  - max_depth=10
+  - min_samples_split=10
+  - min_samples_leaf=5
+
+Evaluation Metrics:
+- Mean Squared Error (MSE): 84,055,709,468.59
+- R² Score: 0.87
+
+Feature Importance (Regressor):
+The most important features in predicting the selling price were:
+
+| Feature                 | Importance |
+|-------------------------|------------|
+| max_power               | 0.768168   |
+| age                     | 0.219858   |
+| seller_type_Individual   | 0.011974   |
+| engine                  | 0.000000   |
+| mileage(km/ltr/kg)     | 0.000000   |
+| owner_Second Owner      | 0.000000   |
+| transmission_Manual     | 0.000000   |
+
+A bar plot visualizing feature importance was saved as feature_importance_rf_regressor.png.
+
+---
+
+3. Observations and Insights
+1. Classification Task:
+   - The Random Forest Classifier performed well with an accuracy of 87%.
+   - age and max_power were the most significant predictors of price category.
+   - Features such as mileage(km/ltr/kg), seller_type_Individual, owner_Second Owner, and transmission_Manual had negligible importance, suggesting they have little to no impact on classification.
+
+2. Regression Task:
+   - The Random Forest Regressor achieved a high R² score of 0.87, indicating a strong fit to the data.
+   - max_power was the most influential predictor of selling price, followed by age.
+   - Features like engine, mileage(km/ltr/kg), and categorical variables had minimal to no impact on predicting the selling price.
+
+3. Feature Analysis:
+   - For both tasks, max_power and age were consistently important features.
+   - The minimal importance of other features suggests potential collinearity or redundancy in the dataset.
+
+---
+
+4. Recommendations:
+- Data Analysis:
+    - Investigate why features such as mileage(km/ltr/kg) and engine have negligible importance. Further feature engineering or domain-specific transformations might improve their utility.
+
+- Model Improvement:
+    - Experiment with hyperparameter tuning (e.g., increasing max_depth or adjusting min_samples_split) to potentially enhance performance.
+    - Consider alternative models such as Gradient Boosting or XGBoost for comparison.
+
+- Visualization:
+    - Use partial dependence plots to understand the nonlinear relationships between key features (max_power, age) and target variables.
+
+---
+
+Artifacts:
+- Confusion Matrix: confusion_matrix_rf_classifier.png
+- Feature Importance (Classifier): feature_importance_rf_classifier.png
+- Feature Importance (Regressor): feature_importance_rf_regressor.png

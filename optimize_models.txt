@@ -1,0 +1,83 @@
+Analysis of Hyperparameter Optimization Findings
+
+---
+
+1. Linear Regression Baseline
+- This serves as a benchmark for regression. While it performed decently, improvements can be achieved using more flexible models like Decision Trees and Random Forests.
+
+**Metrics:**
+- Mean Squared Error (MSE): 209,941,047,424.15
+- R² Score: 0.68
+- Mean Absolute Error (MAE): 274,668.23
+
+**Linear Regression Coefficients:**
+
+| Feature                   | Coefficient        |
+|---------------------------|--------------------|
+| mileage(km/ltr/kg)       | 15,111.28          |
+| engine                    | 16.59              |
+| max_power                 | 13,411.96          |
+| age                       | -35,835.68         |
+| seller_type_Individual    | -208,823.58        |
+| owner_Second Owner        | -54,554.79         |
+| transmission_Manual       | -479,808.35        |
+
+The linear regression coefficients reveal that features like `transmission_Manual` and `seller_type_Individual` have strong impacts on price predictions.
+
+---
+
+2. Decision Tree Optimization
+**Best Hyperparameters for Classification:**
+- max_depth: 10
+- min_samples_leaf: 1
+- min_samples_split: 2
+
+**Best Hyperparameters for Regression:**
+- max_depth: None
+- min_samples_leaf: 1
+- min_samples_split: 2
+
+**Improvements:**
+- Limiting tree depth and adjusting splitting parameters prevent overfitting, resulting in a more generalized model.
+- Fine-tuning enables the model to capture intricate patterns without excessive complexity.
+
+---
+
+3. Random Forest Optimization
+**Best Hyperparameters for Classification:**
+- n_estimators: 50
+- max_depth: None
+- min_samples_leaf: 2
+- min_samples_split: 2
+
+**Best Hyperparameters for Regression:**
+- n_estimators: 100
+- max_depth: 20
+- min_samples_leaf: 1
+- min_samples_split: 2
+
+**Improvements:**
+- Random Forest's ensemble approach reduces variance and improves performance compared to a single Decision Tree.
+- Hyperparameter tuning enables the selection of an optimal balance between model complexity and accuracy.
+
+---
+
+4. k-Fold Cross-Validation Results
+Cross-validation for Random Forest ensures consistent performance across data folds, confirming the model's robustness.
+
+**Random Forest Classifier Cross-Validation Scores:** 
+[0.93082244, 0.92697925, 0.92384615, 0.93615385, 0.93769231]
+- **Mean Accuracy:** 0.9311 (93.11%)
+
+**Random Forest Regressor Cross-Validation Scores:** 
+[-3.15075048e+10, -1.81318003e+10, -2.01869954e+10, -1.82356466e+10, -2.14094605e+10]
+- **Mean MSE:** 21,894,281,528.92
+
+---
+
+### Recommendations:
+1. **Decision Tree:** Works well for smaller datasets or interpretable models but can overfit without constraints. Use tuned parameters for moderate performance.
+2. **Random Forest:** Outperforms other models in both classification and regression due to ensemble averaging. Recommended as the primary model.
+3. **Linear Regression:** Retain as a baseline for regression due to its simplicity and interpretability.
+
+---

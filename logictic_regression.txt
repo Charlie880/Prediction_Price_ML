@@ -1,0 +1,64 @@
+Logistic Regression Analysis
+
+Dataset Overview
+- Target Variable: price_category (binary: 1 = High Price, 0 = Low Price)
+- Features used:
+  - mileage(km/ltr/kg)
+  - engine
+  - max_power
+  - age
+  - seller_type_Individual
+  - owner_Second Owner
+  - transmission_Manual
+
+Methodology
+1. The median selling price was calculated, and a new binary target column (price_category) was created.
+2. The data was split into training (80%) and testing (20%) sets.
+3. Logistic Regression was applied to predict whether a car belongs to the "High Price" category.
+4. Model evaluation was performed using:
+   - Classification Report
+   - Confusion Matrix
+   - ROC-AUC Curve
+
+Findings
+
+Model Performance
+- Accuracy: 86%
+- Classification Metrics:
+  - Class 0 (Low Price):
+    - Precision: 88%
+    - Recall: 84%
+    - F1-Score: 86%
+  - Class 1 (High Price):
+    - Precision: 85%
+    - Recall: 88%
+    - F1-Score: 87%
+- The balanced precision and recall across both classes indicate a reliable model.
+
+Feature Importance
+The coefficients from the Logistic Regression model indicate the influence of each feature on predicting the "High Price" category:
+- Positive Influence:
+  - mileage(km/ltr/kg): 0.091
+  - max_power: 0.054
+  - engine: 0.003
+- Negative Influence:
+  - transmission_Manual: -0.521
+  - owner_Second Owner: -0.527
+  - age: -0.802
+  - seller_type_Individual: -1.167
+
+Key Observations
+1. Cars with higher mileage and maximum power are more likely to belong to the "High Price" category.
+2. Cars sold by individuals (seller_type_Individual) or second owners (owner_Second Owner) are less likely to have a high price.
+3. Older cars (age) and manual transmission vehicles (transmission_Manual) negatively affect the price category.
+
+Convergence Warning
+A ConvergenceWarning was raised, indicating that the optimization did not converge within the default number of iterations. This suggests the need for:
+1. Scaling the features (e.g., using StandardScaler).
+2. Increasing the maximum iterations (max_iter).
+3. Trying alternative solvers such as 'saga' or 'liblinear'.
+
+Next Steps
+1. Scale the data using a standard scaler.
+2. Re-run the model with increased iterations (max_iter=500 or higher).
+3. Compare results to assess improvements and resolve the warning.

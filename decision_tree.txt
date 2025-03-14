@@ -1,0 +1,63 @@
+Decision Tree Findings
+
+Classification Task
+Objective: Predict whether a car's selling price is above or below the median price using a decision tree classifier.
+
+Model Setup:
+- Target Variable: Binary classification of selling price as High Price (>= median) or Low Price (< median).
+- Features:
+  - mileage(km/ltr/kg)
+  - engine
+  - max_power
+  - age
+  - seller_type_Individual
+  - owner_Second Owner
+  - transmission_Manual
+- Hyperparameters:
+  - max_depth=3
+  - min_samples_split=10
+  - min_samples_leaf=5
+
+Performance:
+- Accuracy: 87%
+- Classification Report:
+  - Precision: 88% (Low Price), 87% (High Price)
+  - Recall: 87% (Low Price), 88% (High Price)
+  - F1-Score: 87% for both categories
+- Confusion Matrix: Saved as confusion_matrix_classifier.png.
+- Tree Visualization: Decision tree nodes, splits, and outcomes saved as decision_tree_classifier.png.
+
+Key Insight: Age and Max Power were the most significant contributors.
+
+Feature Importance:
+- Age: 56%
+- Max Power: 39%
+- Engine, Mileage, and other features had minimal impact.
+
+Regression Task
+Objective: Predict the exact selling price of a car using a decision tree regressor.
+
+Model Setup:
+- Target Variable: Selling Price (numerical value).
+- Features: Same as above.
+- Hyperparameters:
+  - max_depth=3
+  - min_samples_split=10
+  - min_samples_leaf=5
+
+Performance:
+- Mean Squared Error (MSE): ~84 billion
+- R² Score: 87%
+- Tree Visualization: Regression tree saved as decision_tree_regressor.png.
+
+Key Insight: Max Power was the dominant predictor.
+
+Feature Importance:
+- Max Power: 77%
+- Age: 22%
+- Other features had negligible impact.
+
+Recommendations:
+- The classifier effectively categorizes cars into price categories with an 87% accuracy, making it suitable for basic decision-making tasks.
+- The regressor provides reasonably accurate predictions, but the high MSE indicates potential overfitting or the need for feature scaling or additional feature engineering.
+- Consider using alternative algorithms, such as Random Forests, for enhanced performance and robustness.
