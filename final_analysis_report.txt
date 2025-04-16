@@ -28,11 +28,6 @@ Key Findings
 - min_samples_split: 2
 - min_samples_leaf: 1
 
-**Cross-Validation (Random Forest Regressor):**
-- Mean MSE: ~[insert cross-validation mean score]
-
----
-
 2. Classification Task
 - **Classification Approach:** Car prices were divided into two categories based on the median price (high price vs. low price).
 
